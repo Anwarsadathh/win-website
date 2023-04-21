@@ -23,6 +23,8 @@ router.get('/Registration', function(req, res, next) {
   res.render('Registration-form', { title: 'Whatisnext.in' });
 });
 
-
+router.get('/booking', function(req, res, next) {
+  res.render('booking', { title: 'Whatisnext.in' });
+});
 
 module.exports = router;

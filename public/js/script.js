@@ -49,29 +49,29 @@ let nameVal;
       }
   }
   
-  function phoneVal(){
-    let number=document.getElementById("phone").value
-    var regex = /^[0-9]+$/;
-    var check = /^[0-9]{10}/;
-    let length = number.toString().length;
-    var result = number.match(check);
+  // function phoneVal(){
+  //   let number=document.getElementById("phone").value
+  //   var regex = /^[0-9]+$/;
+  //   var check = /^[0-9]{10}/;
+  //   let length = number.toString().length;
+  //   var result = number.match(check);
     
    
-    if(regex.test(number) &&result!= null && length==10)
-    {
-        document.getElementById("phone-warning").innerHTML=""
+  //   if(regex.test(number) &&result!= null && length==10)
+  //   {
+  //       document.getElementById("phone-warning").innerHTML=""
        
-        mobVal = true;
-    }
-    else{
-        document.getElementById("phone-warning").innerHTML= "Phone number is not valid"
+  //       mobVal = true;
+  //   }
+  //   else{
+  //       document.getElementById("phone-warning").innerHTML= "Phone number is not valid"
        
-        mobVal = false;
-    }
-  }
+  //       mobVal = false;
+  //   }
+  // }
   
   function SubmitVal(){
-      if(nameVal==true && emailVal==true && msgVal == true && mobVal == true){
+      if(nameVal==true && emailVal==true && msgVal == true){
   
           $("#submit-form").submit((e)=>{
               e.preventDefault()
@@ -108,3 +108,46 @@ setTimeout(function(){
       
   
   }
+
+
+  $("#submit-forms").submit((e)=>{
+    e.preventDefault()
+    $.ajax({
+        url:"https://script.google.com/macros/s/AKfycby97ZJ7gXV8ghOt6z4JZhVLR-bTV6CLfJl2a-OQRccJwcbJT_FJ6UBbHimYPVK_S84rLg/exec",
+        data:$("#submit-forms").serialize(),
+        method:"post",
+        success:function (response){
+        Swal.fire(
+'Your message was sent',
+'Thank you!',
+'success'
+)
+setTimeout(function(){
+window.location.reload();
+}, 2000);
+          //window.location.href="https://google.com"
+      },
+      error:function (err){
+          alert("Something Error")
+
+      }
+  })
+})
+const cards = document.querySelectorAll('.cardss');
+const loadMoreBtn = document.querySelector('#load-more-btns');
+let visibleCards = 18; // adjust this number as needed
+
+for (let i = visibleCards; i < cards.length; i++) {
+cards[i].style.display = 'none';
+}
+
+loadMoreBtn.addEventListener('click', function() {
+for (let i = visibleCards; i < visibleCards + 6 && i < cards.length; i++) {
+  cards[i].style.display = 'block';
+}
+visibleCards += 6;
+if (visibleCards >= cards.length) {
+  loadMoreBtn.style.display = 'none';
+}
+});
+
